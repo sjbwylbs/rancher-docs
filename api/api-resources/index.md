@@ -1,29 +1,24 @@
----
-title: API
-layout: rancher-default
----
-
-## Resource Types
+## Resource Types 资源类型
 
 <br>
 
 [account]({{site.baseurl}}/rancher/api/api-resources/account/)|
 ---|
-All resources in Rancher are owned or created by an account. |
+All resources in Rancher are owned or created by an account.Rancher的所有资源被一个账户拥有，或者由该账户创建。 |
 
 <br><br>
 <br>
 
 [apiKey]({{site.baseurl}}/rancher/api/api-resources/apiKey/)|
 ---|
-An API Key provides access to the Rancher API if access control has been turned on. The access key and secret key pair are created per environment and can be used to directly call the API or used with [rancher-compose]({{site.baseurl}}/rancher/rancher-compose). |
+An API Key provides access to the Rancher API if access control has been turned on. The access key and secret key pair are created per environment and can be used to directly call the API or used with [rancher-compose]({{site.baseurl}}/rancher/rancher-compose).如果启动了访问控制，那么API 密钥将会提供访问Rancher API的能力。由每个environment创建access key以及secret key对，能够直接用来调用API或者和[rancher-compose]({{site.baseurl}}/rancher/rancher-compose一起使用。 |
 
 <br><br>
 <br>
 
 [certificate]({{site.baseurl}}/rancher/api/api-resources/certificate/)|
 ---|
-A certificate is used to add in SSL termination to load balancers. |
+A certificate is used to add in SSL termination to load balancers.证书用于在SSL终端添加到负载均衡器。 |
 
 <br><br>
 <br>
@@ -31,21 +26,21 @@ A certificate is used to add in SSL termination to load balancers. |
 
 [container]({{site.baseurl}}/rancher/api/api-resources/container/)|
 ---|
-A container is a representation of a Docker container on a host. |
+A container is a representation of a Docker container on a host. 容器是用来表示主机上的一个Docker容器。|
 
 <br><br>
 <br>
 
 [dnsService]({{site.baseurl}}/rancher/api/api-resources/dnsService/)|
 ---|
-A "dnsService" in the API is referred to as a Service Alias in the UI and the Rancher documentation. In the API documentation, we'll use the UI terminology. A service alias allows the ability to add a DNS record for your services to be discovered. |
+A "dnsService" in the API is referred to as a Service Alias in the UI and the Rancher documentation. In the API documentation, we'll use the UI terminology. A service alias allows the ability to add a DNS record for your services to be discovered. API中的"dnsService"在UI和Rancher文档中被称为服务别名。我们在API文档中使用UI术语来程序"dnsService"。一个服务别名允许为你可被发现的服务添加DNS记录。|
 
 <br><br>
 <br>
 
 [environment]({{site.baseurl}}/rancher/api/api-resources/environment/)|
 ---|
-An "environment" in the API is referred to as a stack in the UI and the Rancher documentation. In the API documentation, we'll use the UI terminology. A Rancher stack mirrors the same concept as a docker-compose project.  It represents a group of services that make up a typical application or workload. |
+An "environment" in the API is referred to as a stack in the UI and the Rancher documentation. In the API documentation, we'll use the UI terminology. A Rancher stack mirrors the same concept as a docker-compose project.  It represents a group of services that make up a typical application or workload. API中的"environment"在UI和Rancher文档中被称为栈。我们在API文档中使用UI术语来称呼"environment"。Rancher栈和docker-compose工程反映了同样的概念。Rancher栈代表一组构建典型应用和负载程序的服务。|
 
 <br><br>
 <br>
