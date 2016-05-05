@@ -16,6 +16,7 @@
    * [使用 Route 53 做外部 DNS](rancher-services/Route53-DNS-Service.md)
    * [元数据服务](rancher-services/metadata-service.md)
    * [存储服务](rancher-services/storage-service.md)
+   * 审计日志
 * [系统配置](configuration/index.md)
    * [访问控制](configuration/access-control.md)
    * [设置](configuration/settings.md)
@@ -59,7 +60,6 @@
 * [升级 Rancher](upgrading/index.md)
 * [为 Rancher 做贡献](contributing/index.md)
 * [使用 API](api/index.md)
-   * [如何使用 API](api/index.md)
    * [常用资源字段](api/common/index.md)
    * [API 资源](api/api-resources/index.md)
 * [Rancher OS](os/rancher_os.md)
