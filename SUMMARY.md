@@ -62,6 +62,7 @@
 * [使用 API](api/index.md)
    * [常用资源字段](api/common/index.md)
    * [API 资源](api/api-resources/index.md)
+      * [hosts](api/api-resources/host/index.md)
 * [Rancher OS](os/rancher_os.md)
    * [快速安装指南](os/quick-start-guide.md)
    * [运行 Rancher OS](os/Running RancherOS/index.md)
