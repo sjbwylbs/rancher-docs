@@ -11,10 +11,10 @@
 
 > **注意:** 元数据服务对于Rancher 的系统容器是不可用的，如：Network Agent 和 LB Agent 容器。
 
-## How to Get the Metadata 
+## 如何获取到元数据 
 ---
 
-From the Rancher UI, you can execute into shell of the container by selecting **Execute Shell** from the drop down of the container. The drop down can be found by hovering over the container. 
+在 Rancher 的图形界面上，您能从容器的下拉菜单 **Execute Shell** 上进入到容器的命令行。 From the Rancher UI, you can execute into shell of the container by selecting from the drop down of the container. The drop down can be found by hovering over the container. 
 
 To obtain the metadata, you'll run a curl command.
 
