@@ -3,9 +3,9 @@
 
 使用 Rancher 的元数据服务，你能在任意 Rancher 所管理的何容器内部来查询到关于容器所管理的网络和的相关信息。 元数据可以涉及到容器自身、所在服务或者堆栈，以及容器所允许的主机，等等。元数据默认格式是 JSON 。 
 
-A container can be launched in the Rancher managed network in several ways.
+容器可以通过以下几种方式在 Rancher 管理的网络上启动。
 
-* In the [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/), the service/container was started with _Managed_ as the network option. By default, the network of a service is set to _Managed_. 
+* 通过图形界面 [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/), 服务/容器 被启动时使用了 _Managed_ 网络参数。as the network option. By default, the network of a service is set to _Managed_. 
 * Using [Rancher-Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/), any service/container, that doesn't have another networking mode (`net`) specified, is launched in the managed network.
 * When [using native docker]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/native-docker/#joining-natively-started-containers-to-the-rancher-network), if you add the label `io.rancher.container.network=true` to your `docker run` command, then the container will join the Rancher managed network.
 
