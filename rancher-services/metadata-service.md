@@ -5,11 +5,11 @@
 
 容器可以通过以下几种方式在 Rancher 管理的网络上启动。
 
-* 通过图形界面 [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/), 服务/容器 被启动时使用了 _Managed_ 网络参数。as the network option. By default, the network of a service is set to _Managed_. 
-* Using [Rancher-Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/), any service/container, that doesn't have another networking mode (`net`) specified, is launched in the managed network.
-* When [using native docker]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/native-docker/#joining-natively-started-containers-to-the-rancher-network), if you add the label `io.rancher.container.network=true` to your `docker run` command, then the container will join the Rancher managed network.
+* 通过图形界面 [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/), 一个服务/容器 被启动时使用了 _Managed_ 网络参数。默认情况下，服务网络已经被设置为 _Managed_ 。
+* 通过 [Rancher-Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/) 命令行，一个服务/容器，当没有被设置为网络模式 (`net`)，在Rancher 管理的网络上被启动。
+* 当用 [ docker 原生命令]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/native-docker/#joining-natively-started-containers-to-the-rancher-network) 启动容器, 如果你在 `docker run` 命令中加入标签 `io.rancher.container.network=true` ，这样容器就加入了 Rancher 的管理网络。
 
-> **Note:** Metadata service is not available for system containers, i.e. Network Agent and LB Agent. 
+> **注意:** 元数据服务对于Rancher 的系统容器是不可用的，如：Network Agent 和 LB Agent 容器。
 
 ## How to Get the Metadata 
 ---
