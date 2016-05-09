@@ -33,29 +33,29 @@ $ curl http://rancher-metadata/<version>/<path>
 容器所在的堆栈  | `self/stack` | 提供的元数据是您执行元数据查询命令的容器所属堆栈的信息 
 容器所运行的主机  | `self/host` | 提供的元数据是您执行元数据查询命令的容器所运行于主机的信息
 其它容器  | `containers` | 提供所有其它容器的元数据。用纯文本格式，它可返回了所有容器索引后的清单。用 JSON 格式，它可返回所有容器的所有元数据信息。使用索引或者容器名称在路径中，你可以获取特定容器的元数据。
-其它服务  | `services` | 提供所有其它服务的元数据。用纯文本格式，能返回所有服务的索引编号。用 JSON 格式，它能返回所有服务的元数据信息。在路径中使用索引编号或者名称，可以获得一个特定服务的元数据信息。如果对容器向下查看信息，在V1 (`2015-07-25`)中只能返回容器的名称，而在V2 (`2015-12-19`)中则可以容器对象清单。 
-其它堆栈  | `stacks/<stack-name>` | 提供所有其它服务的元数据。用纯文本格式，能返回所有服务的索引编号。用 JSON 格式，它能返回所有服务的元数据信息。在路径中使用索引编号或者名称，可以获得一个特定服务的元数据信息。如果对容器向下查看信息，在V1 (`2015-07-25`)中只能返回容器的名称，而在V2 (`2015-12-19`)中则可以容器对象清单。Provides metadata on all stacks. In plaintext, it provides an indexed response of all stacks. In JSON format, it provides all the metadata for all stacks. Using either the index number or name in the path, you can obtain metadata on a specific stack. When drilling down to container details, in V1 (`2015-07-25`), only container name(s) are returned, but in V2 (`2015-12-19`), container object(s) are returned. 
+其它服务  | `services` | 提供所有其它服务的元数据。用纯文本格式，能返回所有服务的索引编号。用 JSON 格式，它能返回所有服务的元数据信息。在路径中使用索引编号或者名称，可以获得一个特定服务的元数据信息。如果去查看容器相关信息，在V1 (`2015-07-25`)中只能返回容器的名称，而在V2 (`2015-12-19`)中则可以容器对象清单。 
+其它堆栈  | `stacks/<stack-name>` | 提供所有其它堆栈的元数据。用纯文本格式，能返回所有堆栈的索引编号。用 JSON 格式，它能返回所有堆栈的元数据信息。在路径中使用索引编号或者名称，可以获得一个特定堆栈的元数据信息。如果去查看容器相关信息，在V1 (`2015-07-25`)中只能返回容器的名称，而在V2 (`2015-12-19`)中则可以容器对象清单。
 
-### Versioning of Metadata
+### 元数据的版本
 
-In the `curl` commands, we strongly recommend using a specific version, but you could also choose `latest`.
+在 `curl` 命令里，我们强烈建议使用一个的定的版本，而不总是使用 `latest`。
 
-> **Note:** As we make changes to our `latest` version, the data returned may change in any release and become incompatible with your code. 
+> **注意:** 我们对 `latest` 版本会持续更改，不同版本返回的数据可能不同，因此可能会影响到您的代码的兼容性。
 
-The version of the metadata service is based on date. 
+元数据服务的版本是基于日期的。
 
-Version Reference | Version|
+版本参考 | 版本|
 ---- | ----
 V2 | 2015-12-19 |
 V1 | 2015-07-25 |
 
-#### Differences in Versions
+#### 版本的差异
 
 **V1 vs. V2**
 
-When drilling down to containers using the http path ending in `/services/<service-name>/containers` or `</stacks/<stack-name>/services/<service-name>/containers`, V1 returns container name(s) and V2 returns container object(s). More information is provided with V2 of the metadata service. 
+当使用路径  `/services/<service-name>/containers` 或 `</stacks/<stack-name>/services/<service-name>/containers` 查看容器元数据信息时，V1 返回容器的名称，而 V2 返回所有容器对象。元数据服务的 V2 版本可以提供更多信息。 
 
-_Example_
+_势力_
 
 In Rancher, there is a stack called `foostack` and it contains a service called `barservice` with 3 containers. 
 
