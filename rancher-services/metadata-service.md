@@ -28,13 +28,13 @@ $ curl http://rancher-metadata/<version>/<path>
 
 元数据 | 路径  | 描述
 ----|---- | ---
-Container | `self/container` | Provides metadata on the container that you are executing the command in 
-Service that container is part of | `self/service` | Provides metadata on the service of the container that you are executing the command in 
-Stack that container is part of | `self/stack` | Provides metadata on the stack of the container that you are executing the command in 
-Host that container is deployed on | `self/host` | Provides metadata on the host of the container that you are executing the command in
-Other Containers | `containers` | Provides metadata on all containers. In plaintext, it provides an indexed response of all containers. In JSON format, it provides all the metadata for all  containers. Using either the index number or name in the path, you can obtain metadata on a specific container. 
-Other Services | `services` | Provides metadata on all services. In plaintext, it provides an indexed response of all services. In JSON format, it provides all the metadata for all services. Using either the index number or name in the path, you can obtain metadata on a specific service. If drilling down to containers, in V1 (`2015-07-25`), only container name(s) are returned, but in V2 (`2015-12-19`), container object(s) are returned. 
-Other Stacks | `stacks/<stack-name>` | Provides metadata on all stacks. In plaintext, it provides an indexed response of all stacks. In JSON format, it provides all the metadata for all stacks. Using either the index number or name in the path, you can obtain metadata on a specific stack. When drilling down to container details, in V1 (`2015-07-25`), only container name(s) are returned, but in V2 (`2015-12-19`), container object(s) are returned. 
+容器 | `self/container` | 提供的元数据是您执行元数据查询命令的容器自身的信息
+容器所在的服务  | `self/service` | 提供的元数据是您执行元数据查询命令的容器所属服务的信息
+容器所在的堆栈  | `self/stack` | 提供的元数据是您执行元数据查询命令的容器所属堆栈的信息 
+容器所运行的主机  | `self/host` | 提供的元数据是您执行元数据查询命令的容器所运行于主机的信息
+其它容器  | `containers` | 提供所有其它容器的元数据。用纯文本格式，它可返回了所有容器索引后的清单。用 JSON 格式，它可返回所有容器的所有元数据信息。使用索引或者容器名称在路径中，你可以获取特定容器的元数据。
+其它服务  | `services` | 提供所有其它服务的元数据。用纯文本格式，能返回所有服务的索引编号。用 JSON 格式，它能返回所有服务的元数据信息。在路径中使用索引编号或者名称，可以获得一个特定服务的元数据信息。如果对容器向下查看信息，在V1 (`2015-07-25`)中只能返回容器的名称，而在V2 (`2015-12-19`)中则可以容器对象清单。 
+其它堆栈  | `stacks/<stack-name>` | Provides metadata on all stacks. In plaintext, it provides an indexed response of all stacks. In JSON format, it provides all the metadata for all stacks. Using either the index number or name in the path, you can obtain metadata on a specific stack. When drilling down to container details, in V1 (`2015-07-25`), only container name(s) are returned, but in V2 (`2015-12-19`), container object(s) are returned. 
 
 ### Versioning of Metadata
 
