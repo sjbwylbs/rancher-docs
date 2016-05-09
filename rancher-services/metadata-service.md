@@ -1,5 +1,5 @@
 # 元数据服务
-
+初始化版本翻译中，欢迎随后 review
 
 使用 Rancher 的元数据服务，你能在任意 Rancher 所管理的何容器内部来查询到关于容器所管理的网络和的相关信息。 元数据可以涉及到容器自身、所在服务或者堆栈，以及容器所允许的主机，等等。元数据默认格式是 JSON 。 
 
@@ -14,19 +14,19 @@
 ## 如何获取到元数据 
 ---
 
-在 Rancher 的图形界面上，您能从容器的下拉菜单 **Execute Shell** 上进入到容器的命令行。 From the Rancher UI, you can execute into shell of the container by selecting from the drop down of the container. The drop down can be found by hovering over the container. 
+在 Rancher 的图形界面上，您能从容器的下拉菜单 **Execute Shell** 上进入到容器的命令行。下拉菜单在鼠标滑过容器的时候可以出现。 
 
-To obtain the metadata, you'll run a curl command.
+你可以使用 curl 命令来过去元数据。
 
 ```bash
-# If curl is not installed, install it
+# 如果 curl 没有安装，安装它
 $ apt-get install curl
-# Basic curl command to obtain a plaintext response
+# curl 命令可以返回纯文本的相应结果
 $ curl http://rancher-metadata/<version>/<path>
 ```
-The path can be changed depending on what metadata you want to retrieve as well as the response format.
+访问路径依赖于你想访问什么样元数据和想得到的相应结果的格式。
 
-Metadata | path  | Description
+元数据 | 路径  | 描述
 ----|---- | ---
 Container | `self/container` | Provides metadata on the container that you are executing the command in 
 Service that container is part of | `self/service` | Provides metadata on the service of the container that you are executing the command in 
