@@ -1,5 +1,5 @@
 # 元数据服务
-初始化版本翻译中，欢迎随后 review
+ Martin 初始化版本翻译中，欢迎随后 review
 
 使用 Rancher 的元数据服务，你能在任意 Rancher 所管理的何容器内部来查询到关于容器所管理的网络和的相关信息。 元数据可以涉及到容器自身、所在服务或者堆栈，以及容器所允许的主机，等等。元数据默认格式是 JSON 。 
 
@@ -133,12 +133,12 @@ $ curl 'http://rancher-metadata/2015-12-19/services/Example'
 
 #### JSON
 
-The JSON format can be retrieved by adding an `Accept: application/json` header to your curl command. 
+把 `Accept: application/json` 添加在 curl 命令的请求标记中，可以返回 JSON 格式的数据。
 
 ```bash
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/self/container' 
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/self/stack' 
-# Retrieve the metadata for another service in the stack
+# 返回某个堆栈总其它服务的元数据
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/services/<service-name>' 
 ```
 
@@ -147,7 +147,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 
 ### 容器
 
-| Fields | Description |
+| 字段 | 描述 |
 | ----| ----|
 | `create_index` | The order number of which the container was launched in the service, i.e. 2 means it was the second container launched in the service. Note: Create_index is never reused. If you had a service with 2 containers and deleted the 2nd container, the next container that gets launched for the service would have a `create_index` of 3 even though there are only 2 containers in the service.
 | `health_state` | The state of health for the container if a [health check]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/health-checks/) was enabled.
@@ -166,7 +166,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 
 ### 服务
 
- Fields | Description
+ 字段 | 描述
 ----|----
 `containers` | List of container names in the service
 `create_index` | Create_index of the last container created of the service. Note: Create_index is never reused. If you had a service with 2 containers and deleted the 2nd container, the create_index will be 2. The next container that gets launched for the service would update the create_index to 3 even though there are only 2 containers.
@@ -187,7 +187,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 
 ### 堆栈
 
-Fields | Description
+字段 | 描述
 ----|----
 `environment_name` | Name of [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) that the Stack is in
 `name` | Name of [Stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/)
@@ -196,7 +196,7 @@ Fields | Description
 
 ### 主机
 
-Fields | Description
+字段 | 描述
 ----|----
 `agent_ip` | IP of the Rancher Agent, i.e. the value of the `CATTLE_AGENT_IP` environment variable.
 `hostId` | Identifier of the host in the specific environment
