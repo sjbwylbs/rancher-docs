@@ -95,13 +95,13 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 ...}]
 ```
 
-### Plaintext vs JSON 
+### 纯文本 vs JSON 格式
 
-The metadata can be returned in either plaintext or JSON format. Depending on how you want to use your metadata, you can pick either format. 
+元数据信息能返回成纯文本合作和 JSON 格式。基于你怎样使用元数据的需求，你能选择任意格式。 
 
-#### Plaintext
+#### 纯文本
 
-When executing the curl command, you'll receive plaintext for the path that was requested. You can start at the top level of the path and continue to update the path based on available keys until your metadata service provides the data you were looking for. 
+在执行 curl 命令时，您会从所请求的路径中获得纯文本。你可以从路径的最顶级开始查询，根据返回的可用的键值信息继续向下层访问，直到元数据服务返回了您想查询的数据。
 
 ```bash
 $ curl 'http://rancher-metadata/2015-12-19/self/container'
@@ -119,14 +119,14 @@ stack_name
 start_count
 uuid
 $ curl 'http://rancher-metadata/2015-12-19/self/container/name'
-# Note: Curl will not provide a new line, so single values will be on same line as the command prompt
+# 注意: Curl 不能换行，因此最后一行的返回值和命令提示符出现在同一行行。
 Default_Example_1$root@<container_id>
 $ curl 'http://rancher-metadata/2015-12-19/self/container/label/io.rancher.stack.name'
 Default$root@<container_id>
-# Arrays can use either the index or name to go get the values
+# 数组可以通过索引号和名称来返回值
 $ curl 'http://rancher-metadata/2015-12-19/services'
 0=Example
-# You can either user the index or name as a path
+# 你可以在路径中使用索引号或者名称
 $ curl 'http://rancher-metadata/2015-12-19/services/0'
 $ curl 'http://rancher-metadata/2015-12-19/services/Example'
 ```
@@ -142,10 +142,10 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/services/<service-name>' 
 ```
 
-## Metadata Fields 
+## 元数据字段 
 ---
 
-### Container
+### 容器
 
 | Fields | Description |
 | ----| ----|
@@ -164,7 +164,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 | `start_count` | The number of times the container was started.
 | `uuid` | Unique container identifier that Rancher assigns to containers
 
-### Service
+### 服务
 
  Fields | Description
 ----|----
@@ -185,7 +185,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 `stack_name` | Name of stack the service is part of
 `uuid` | Unique service identifier that Rancher assigns to services
 
-### Stack
+### 堆栈
 
 Fields | Description
 ----|----
@@ -194,7 +194,7 @@ Fields | Description
 `services` | List of Services in the Stack
 `uuid` | Unique stack identifier that Rancher assigns to stacks
 
-### Host
+### 主机
 
 Fields | Description
 ----|----
@@ -204,7 +204,7 @@ Fields | Description
 `name` | Name of [Host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/)
 `uuid` | Unique host identifier that Rancher server assigns to hosts
 
-## Adding User Metadata To a Service
+## 给服务添加用户元数据
 ---
 
 Rancher allows users to add in their own metadata to a service. Currently, this is only supported through [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/) and the metadata is part of the `rancher-compose.yml` file. In the `metadata` key, the yaml will be parsed into JSON format to be used by the metadata-service.
@@ -228,7 +228,7 @@ service:
 After the service is up, you can find metadata using the metadata service in `.../self/service/metadata` or in `.../services/<service_id>/metadata`. 
 
 
-### JSON Query
+### JSON 查询
 
 ```bash
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/latest/self/service/metadata'
@@ -236,7 +236,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/latest/self/
 
 ```
 
-### Plaintext Queries
+### Plaintext 查询
 
 ```bash
 $ curl 'http://rancher-metadata/latest/self/service/metadata'
