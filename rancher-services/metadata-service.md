@@ -55,42 +55,42 @@ V1 | 2015-07-25 |
 
 当使用路径  `/services/<service-name>/containers` 或 `</stacks/<stack-name>/services/<service-name>/containers` 查看容器元数据信息时，V1 返回容器的名称，而 V2 返回所有容器对象。元数据服务的 V2 版本可以提供更多信息。 
 
-_势力_
+_实例_
 
-In Rancher, there is a stack called `foostack` and it contains a service called `barservice` with 3 containers. 
+在 Rancher 中，有一个堆栈名为 `foostack` ，它包含一个由三个容器组成的名为 `barservice` 的服务。 
 
 ```bash
-# Using V1 returns only container names of the service
+# 使用 V1 返回的只是服务的容器名称
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-07-25/services/barservice/containers'
 ["foostack_barservice_1", "foostack_barservice_2", "foostack_barservice_1"]
 
-# Using V2 returns container objects of the service
+# 使用 V2 返回的是服务中所有容器对象
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/services/barservice/containers'
 [{"create_index":1, "health_state":null,"host_uuid":...
 ...
-# Lists all metadata for all containers of the service
+# 服务里所有容器的元数据清单
 ...
 ...}]
 
-# Using V2, you can drill down to a specific container's object
+# 使用 V2, 你能详细查看某个特定容器对象
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/services/barservice/containers/foostack_barservice_1'
 [{"create_index":1, "health_state":null,"host_uuid":...
 ...
-# Lists all metadata for all containers of the service
+# 服务里所有容器的详细信息清单
 ...
 ...}]
 
-# Using /stacks/<service-name>, you can drill down to services and containers
+# 使用 /stacks/<服务-名称>, 你能详细查看服务和容器
 
-# Using V1 returns only container names of the service
+# 使用 V1 只能返回服务中容器的名称 
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-07-25/stacks/foostack/services/barservice/containers'
 ["foostack_barservice_1", "foostack_barservice_2", "foostack_barservice_1"]
 
-# Using V2 returns container objects of the service
+# 使用 V2 能返回服务中所有容器对象详情清单
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/stacks/foostack/services/barservice/containers'
 [{"create_index":1, "health_state":null,"host_uuid":...
 ...
-# Lists all metadata for all containers of the service
+# 服务里所有容器的详细信息清单
 ...
 ...}]
 ```
