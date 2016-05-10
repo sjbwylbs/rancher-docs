@@ -16,7 +16,7 @@ API中一些资源类型命名和当前UI上所用的术语，并不一致。尤
 
 | UI | API | Description |
 |----|-----|-------------|
-| [Environment]({{site.baseurl}}/configuration/environments/) | [project]({{site.baseurl}}/api/api-resources/project) | 一组物理资源， 例如 [主机]({{site.baseurl}}/api/api-resources/host)) |
+| [Environment]({{site.baseurl}}/configuration/environments/) | [project]({{site.baseurl}}/api/api-resources/project) | 一组物理资源， 例如 [主机]({{site.baseurl}}/api-resources/host) |
 | [Stack]({{site.baseurl}}/rancher-ui/applications/stacks/) | [environment]({{site.baseurl}}/api/api-resources/environment) | 一个(API) 环境是一组服务以及rancher-compose所操作的级别。 |
 
 在这文档中，我们使用UI所用的术语进行描述，在不同点也会提供额外的声明。这些混乱将会在未来的`/v2`版本API清除。
