@@ -149,67 +149,67 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 
 | 字段 | 描述 |
 | ----| ----|
-| `create_index` | The order number of which the container was launched in the service, i.e. 2 means it was the second container launched in the service. Note: Create_index is never reused. If you had a service with 2 containers and deleted the 2nd container, the next container that gets launched for the service would have a `create_index` of 3 even though there are only 2 containers in the service.
-| `health_state` | The state of health for the container if a [health check]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/health-checks/) was enabled.
-| `host_uuid` | Unique host identifier that Rancher server assigns to hosts
-| `hostname` | The hostname of the container.
-| `ips` | When multiple NICs are supported, it will be the list of IPs.
-| `labels` | List of [Labels on Container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/scheduling/#labels). Format for labels is `key`:`value`.
-| `name` | Name of Container 
-| `ports` | List of [Ports used in the container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/containers/#port-mapping). Format for ports is `hostIP:publicIP:privateIP[/protocol]`.
-| `primary_ip` | IP of container
-| `service_index` | The last number in the container name of the service
-| `service_name` | Name of service (if applicable)
-| `stack_name` | Name of stack that the service is in (if applicable)
-| `start_count` | The number of times the container was started.
-| `uuid` | Unique container identifier that Rancher assigns to containers
+| `create_index` | 在服务里容器被启动的顺序编号，例如：2意味着它应该是在服务中第二个被启动的。注意：Crete_index 是不会被重复使用的。如果您的服务有两个容器，当你删除了第二个容器后，下一个被启动的容器得到的 create_index 编号是3，尽管这个服务中总共只有2个容器。
+| `health_state` | 如果 [健康检查]({{site.baseurl}}/rancher-services/health-checks/) 被启用用了，这是容器健康状态信息。
+| `host_uuid` | Rancher 服务器分配给主机的唯一识别标识。
+| `hostname` | 容器的主机名。
+| `ips` | 当多网卡被支持了，它将显示 IP 地址清单。
+| `labels` | [容器上的标签]({{site.baseurl}}/rancher-ui/scheduling/#labels) 清单。标签的格式是 `key`:`value`。
+| `name` | 容器的名称 
+| `ports` |  [容器内使用的端口]({{site.baseurl}}/rancher-ui/infrastructure/containers/#port-mapping) 清单. 端口的格式 `hostIP:publicIP:privateIP[/protocol]`。
+| `primary_ip` | 容器 IP 地址
+| `service_index` | 容器所在的服务的编号
+| `service_name` | 服务的名字 (如果存在)
+| `stack_name` | 服务所在的堆栈的名字 (如果存在)
+| `start_count` | 容器被自动的次数。
+| `uuid` | Rancher 分配给容器的唯一标识。
 
 ### 服务
 
  字段 | 描述
 ----|----
-`containers` | List of container names in the service
+`containers` | 服务中容器的名称清单。
 `create_index` | Create_index of the last container created of the service. Note: Create_index is never reused. If you had a service with 2 containers and deleted the 2nd container, the create_index will be 2. The next container that gets launched for the service would update the create_index to 3 even though there are only 2 containers.
 `expose` | 
-`external_ips` | List of External IPs for [External Services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-external-services/)
-`fqdn` | Fqdn of the service 
-`hostname` | CNAME for [External Services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-external-services/)
-`kind` | Type of Rancher Service 
-`labels` | List of [Labels on Service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/scheduling/#labels). Format for labels is `key:value`.
-`links` | List of linked services. Format for links is `stack_name/service_name:service_alias`. The `links` would show all the keys (i.e. `stack_name/service_name` for all links) and to retrieve the `service_alias`, you would need to drill down to the specific key.
-`metadata` | [User added metadata]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/metadata-service/#adding-user-metadata-to-a-service) 
-`name` | Name of Service
-`ports` | List of [Ports used in the Service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/#port-mapping). Format for ports is `hostIP:publicIP:privateIP[/protocol]`.
-`scale` | Scale of Service
-`sidekicks` | List of service names that are [sidekicks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/#sidekicks)
-`stack_name` | Name of stack the service is part of
-`uuid` | Unique service identifier that Rancher assigns to services
+`external_ips` |  [外部服务]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-external-services/) 的外部 IP 地址清单
+`fqdn` | 服务的 FQDN 全域名 
+`hostname` | [外部服务]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-external-services/) 的CNAME
+`kind` | Rancher 服务的类型
+`labels` | [服务上的标签]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/scheduling/#labels) 清单。标签的格式是 `key:value`.
+`links` | 所连接的服务。 连接的格式是 `stack_name/service_name:service_alias`。`links` 会显示所有的键值  (例如： `stack_name/service_name` 所有连接) 和返回 `service_alias`, 你会需要继续向下查看来找到特定的键值。
+`metadata` | [用户添加的元数据]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/metadata-service/#adding-user-metadata-to-a-service) 
+`name` | 服务的名称
+`ports` |  [在服务中所使用的端口]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/#port-mapping). 端口的格式是 `hostIP:publicIP:privateIP[/protocol]`。
+`scale` | 服务的数量
+`sidekicks` |  [sidekicks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/#sidekicks) 的服务名清单
+`stack_name` | 服务所在的堆栈的名称
+`uuid` | Rancher 分配给服务的唯一标识
 
 ### 堆栈
 
 字段 | 描述
 ----|----
-`environment_name` | Name of [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) that the Stack is in
-`name` | Name of [Stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/)
-`services` | List of Services in the Stack
-`uuid` | Unique stack identifier that Rancher assigns to stacks
+`environment_name` | 堆栈所在 [环境]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) 的名称
+`name` |  [堆栈]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/) 的名称
+`services` | 堆栈中的服务的清单
+`uuid` | Rancher 分配给堆栈的唯一标识。
 
 ### 主机
 
 字段 | 描述
 ----|----
-`agent_ip` | IP of the Rancher Agent, i.e. the value of the `CATTLE_AGENT_IP` environment variable.
-`hostId` | Identifier of the host in the specific environment
-`labels` | List of [Host Labels]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/#host-labels). Format for labels is `key:value`.
-`name` | Name of [Host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/)
-`uuid` | Unique host identifier that Rancher server assigns to hosts
+`agent_ip` | Rancher Agent 的 IP 地址，例如：`CATTLE_AGENT_IP`环境变量的值。
+`hostId` | 在某个环境中主机的唯一标识 
+`labels` | [主机标签]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/#host-labels) 清单。标签格式是 `key:value`
+`name` |  [主机]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/) 名称
+`uuid` |  Rancher 分配给主机的唯一标识
 
 ## 给服务添加用户元数据
 ---
 
-Rancher allows users to add in their own metadata to a service. Currently, this is only supported through [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/) and the metadata is part of the `rancher-compose.yml` file. In the `metadata` key, the yaml will be parsed into JSON format to be used by the metadata-service.
+Rancher 可以让用户给服务增加自己的元数据。目前，这个功能只能通过 [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/) 来实现，并且元数据需要是 `rancher-compose.yml` 文件的一部分。在 `metadata` 键里， yaml 将被解析为 JSON 格式用于元数据服务。
 
-Example `rancher-compose.yml` 
+ `rancher-compose.yml` 示例
 
 ```yaml
 service:
@@ -225,7 +225,7 @@ service:
 
 ```
 
-After the service is up, you can find metadata using the metadata service in `.../self/service/metadata` or in `.../services/<service_id>/metadata`. 
+在这个服务启动之后，你可以通过元数据服务找到这个信息在  `.../self/service/metadata` 或者 `.../services/<service_id>/metadata` 中。. 
 
 
 ### JSON 查询
