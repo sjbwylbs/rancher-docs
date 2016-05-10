@@ -46,7 +46,7 @@ Update
 <span class="headerright">PUT:  <code>${links.self}</code></span>
 </span>
 <div class="action-contents">
-{% highlight json %} 
+```json
 {
 
 	"description": "string",
@@ -64,7 +64,7 @@ Update
 	"name": "string"
 
 } 
-{% endhighlight %}
+```
 </div>
 </span>
 
@@ -78,9 +78,9 @@ Delete
 <span class="headerright">DELETE:  <code>${links.self}</code></span>
 </span>
 <div class="action-contents">
-{% highlight json %} 
+```json
  
-{% endhighlight %}
+```
 </div>
 </span>
 
