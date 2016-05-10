@@ -225,7 +225,7 @@ service:
 
 ```
 
-在这个服务启动之后，你可以通过元数据服务找到这个信息在  `.../self/service/metadata` 或者 `.../services/<service_id>/metadata` 中。. 
+在这个服务启动之后，你可以通过元数据服务找到这个信息在  `.../self/service/metadata` 或者 `.../services/<service_id>/metadata` 中。
 
 
 ### JSON 查询
