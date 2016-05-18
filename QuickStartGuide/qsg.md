@@ -24,35 +24,35 @@ Rancher 服务器的图形界面访问端口是 8080 ，通过在浏览器中访
 
 > **注意:** Rancher 的访问控制在初始安装时并没有配置，你的 Rancher 服务器图形界面和 API 能在任何能访问到您的 IP 地址的地方被访问到。我们建议配置访问控制参考 [访问控制]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/).
 
-### Add Hosts
+### 添加主机
 
-For simplicity, we will add the same host running the Rancher server as a host in Rancher. In real production deployments, we recommend having dedicated hosts running Rancher server(s). 
+为简化操作，我们将添加运行 Rancher 服务器容器的主机。而在实际的生产环境中，我们建议使用专用的主机来运行 Rancher 服务器。 
 
-To add a host, access the UI and click **Infrastructure**, which will immediately bring you to the **Hosts** page. Click on the **Add Host**. Rancher will prompt you to select an IP address. This IP address must be reachable from all the hosts that you will be adding. This is useful in installations where Rancher server will be exposed to the Internet through a NAT firewall or a load balancer. If your host has a private or local IP address like `192.168.*.*`, Rancher will print a warning asking you to make sure hosts can indeed reach the IP.
+通过点击图形界面的 **Infrastructure** 标签来添加主机，然后您将会看到 **Hosts** 页面。Rancher 会提示您选择一个 IP 地址。这个 IP 地址必须可以被所有即将添加的主机访问到。把 Rancher 服务器的端口通过防火墙的 NAT 或者负载均衡器暴露出来，或者暴露到 Internet上在有些情况下是很有用的。如果你的主机有一个私有或者本地 IP 地址，例如： `192.168.*.*`；Rancher 将打印一个提示信息，告诉您是否确认这个 IP 地址可以被正常访问到。
 
-For now you can ignore these warnings as we will only add the Rancher server host itself. Click **Save**. By default, you will be directed to the **Custom** option, which allows you to find the command that launches the rancher/agent container. There will also be options for cloud providers that use `docker-machine` to launch hosts. In the UI, Rancher will provide a command to use to add hosts.
+现在我们添加 Rancher 服务器主机自身，因此我们可以忽略这个提示信息。点击  **Save** ；您将进入默认的 **Custom** 选项页面，您在这可以得到运行 rancher/agent 容器的命令。这里还有其它的公有云的选项，使用这个选项可以实现通过 `docker-machine` 去启动主机节点。在 Web 界面上，Rancher 提供的用于添加主机的命令如下：
 
 ```bash
 $ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.7.9 http://172.17.0.3:8080/v1/scripts/DB121CFBA836F9493653:1434085200000:2ZOwUMd6fIzz44efikGhBP1veo
 ```
 
-Since we are adding a host that is also running Rancher server, we need to add the public IP that should be used for the host. Without this addition to the Rancher agent command, the IP will most likely be set incorrectly for the host. You can add this IP in **Step 4**, which will alter the command and add an environment variable.
+由于我们正在添加 Rancher 服务器的主机，我们需要添加这个主机所使用的共有 IP。Rancher agent 命令中如果没有这个参数，这个主机的 IP 很可能会是个错误的配置。您可以添加这个 IP 地址在**Step 4**，这将会修改命令，并加入一个环境变量。
 
 ```bash
 $ sudo docker run -e CATTLE_AGENT_IP=172.17.0.3 -d --privileged -v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.7.9 http://172.17.0.3:8080/v1/scripts/DB121CFBA836F9493653:1434085200000:2ZOwUMd6fIzz44efikGhBP1veo
 ```
 
-Run this command in the host that is running Rancher server. 
+在运行 Rancher 服务器的主机上运行这个命令。 
 
-When you click **Close** on the Rancher UI, you will be directed back to the **Infrastructure** -> **Hosts** view. In a couple of minutes, the host will automatically appear.
+当您在 Rancher 的页面中点击 **Close** 按钮后，您会被返回到 **Infrastructure** -> **Hosts** 页面。在一两分钟后，这个主机将自动出现在这里。
 
-### Create a Container through UI
+### 使用图形界面创建一个容器
 
-Navigate to the **Applications** -> **Stacks** page, if there are still no services, you can click on the "Add Service" button in the welcome screen. Provide the service with a name like “first_container”. You can just use our default settings and click **Create**. Rancher will start launching two containers on the host. One container is the **_first_container_** that we requested. The other container is a **_Network Agent_**, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
+进入 **Applications** -> **Stacks** 页面，如果这里还没有服务，你可以点击 "Add Service" 按钮。你可以输入一个类似  “first_container” 的名字。您现在使用默认配置并点击 **Create** 。Rancher 将开始在这个主机上启动两个容器。一个容器是您所创建的名为**_first_container_** ；另外一个容器是**_Network Agent_**，这是个由 Rancher 创建的系统容器，它用来处理扩主机联网和健康检查等任务。
 
-Regardless what IP address your host has, both the **_first_container_** and **_Network Agent_** will have IP addresses in the `10.42.*.*` range. Rancher has created this managed overlay network so containers can communicate with each other even if they reside on different hosts.
+不管你的主机是什么 IP 地址，**_first_container_** 和 **_Network Agent_** 将会的到 `10.42.*.*` 网段的 IP 地址。Rancher 已经创建了能在不同主机之上的让所有容器可以相互通信的覆盖网络。
 
-If you click on the dropdown of the **_first_container_**, you will be able to perform management actions like stopping the container, viewing the logs, or accessing the container console.
+如果你点击 **_first_container_**的下拉菜单，你可以执行各种动作，例如：停止容器，查看日志，或者进入容器的 CLI 控制台。
 
 ### Create a Container through Native Docker CLI
 
