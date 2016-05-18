@@ -54,29 +54,30 @@ $ sudo docker run -e CATTLE_AGENT_IP=172.17.0.3 -d --privileged -v /var/run/dock
 
 如果你点击 **_first_container_**的下拉菜单，你可以执行各种动作，例如：停止容器，查看日志，或者进入容器的 控制台。
 
-### Create a Container through Native Docker CLI
+### 使用 Docker 原生命令创建一个容器
 
-Rancher will display any containers on the host even if the container is created outside of the UI. Create a container in the host's shell terminal.
+Rancher 会显示所有在主机上的容器，即使有些容器是在图形界面之外创建的。在主机的 shell 命令行里创建一个容器。
 
 ```bash
 $ docker run -it --name=second_container ubuntu:14.04.2
 ```
 
-In the UI, you will see **_second_container_** pop up on your host! If you terminate the container by exiting the shell, the Rancher UI will immediately show the stopped state of the container.
+在图形界面中，你将看到 **_second_container_** 在你的主机上出现！如果你通过退出命令行来退出用命令方式创建的容器，在 Rancher 图形界面中将立刻显示这个容器的状态为停止。
 
-Rancher reacts to events that happen out of the band and just does the right thing to reconcile its view of the world with reality. You can read more about using Rancher with the [native docker CLI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/native-docker/).
+Rancher 可以对带外发生的事件作出反应，并把当前的显示状况如实地整合在它的视图中。你能了解更多信息在 [使用 Docker 原生命令行]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/native-docker/) 这一章。
 
-If you look at the IP address of the **_second_container_**, you will notice that it is not in `10.42.*.*` range. It instead has the usual IP address assigned by the Docker daemon. This is the expected behavior of creating a Docker container through the CLI. 
+如果你查看容器 **_second_container_** 的 IP 地址，你会注意到他不在 `10.42.*.*` 网段中。它的 IP 地址是通过 Docker 后台服务获得的。这是通过命令行方式创建容器的正常的结果。
 
-What if we want to create a Docker container through CLI and still give it an IP address from Rancher’s overlay network? All we need to do is add a label in the command. 
+如果我希望通过命令行创建的容器依然具有 Ranger 覆盖网络的网络地址呢？我们所需要做的就仅仅是在命令中加一个标签。
 
 ```bash
 $ docker run -it --label io.rancher.container.network=true ubuntu:14.04.2
 ```
 <br>
-The label `io.rancher.container.network` enables us to pass a hint through the Docker command line so Rancher will set up the container to connect to the overlay network.
+标签 `io.rancher.container.network` 让我们通过命令行传递了一个通知，这样 Rancher 会为把容器配置为连接到覆盖网络。
 
-### Create a Multi-Container Application
+
+### 创建一个多容器应用
 
 We have shown you how to create individual containers and connect them to a cross-host network. Most real-world applications, however, are made out of multiple services, with each service made up of multiple containers. A WordPress application, for example, could consist of the following services:
 
