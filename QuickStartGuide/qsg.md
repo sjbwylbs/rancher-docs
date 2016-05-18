@@ -79,33 +79,33 @@ $ docker run -it --label io.rancher.container.network=true ubuntu:14.04.2
 
 ### 创建一个多容器应用
 
-We have shown you how to create individual containers and connect them to a cross-host network. Most real-world applications, however, are made out of multiple services, with each service made up of multiple containers. A WordPress application, for example, could consist of the following services:
+我们已经展示了如何创建当个容器，并把他们连接到跨主机的网络。然而大多数真实世界中的应用都是由多种服务构成的。例如一个 WordPress 应用是由下列服务组成的：
 
-1. A load balancer. The load balancer redirects Internet traffic to the WordPress application.
-2. A WordPress service consisting of two WordPress containers.
-3. A database service consisting of one MySQL container.
+1. 一个负载均衡服务。负载均衡器把 Internet 流量转发给 WordPress 应用。
+2. 一个由两个 WordPress 容器组成的 WordPress 服务。
+3. 一个由一个 MySQL 容器组成的数据库服务。
 
-The load balancer targets the WordPress service, and the WordPress service links to the MySQL service.
+负载均衡器的目标地是 WordPress 服务，WordPress 服务连接到 MySQL 服务。
 
-In this section, we will walk through how to create and deploy the WordPress application in Rancher.
+在这一章里，我们将在 Rancher 中逐步地创建和部署 WordPress 应用堆栈。
 
-From the Rancher UI, click the **Applications** -> **Stacks**, and click on the **Add Service** button to add a service. 
+在 Rancher 的图形界面中，点击  **Applications** -> **Stacks**，点击 **Add Service** 按钮来添加一个服务。
 
-First, we'll create a database service called _database_ and use the mysql image. In the **Command** tab, add the environment variable `MYSQL_ROOT_PASSWORD=pass1`. Click **Create**. You will be immediately brought to a stack page, which will contain all the services.
+首先，我们将使用 mysql 镜像来创建一个名为 _database_ 的数据库服务。在 **Command** 标签里，添加环境变量 `MYSQL_ROOT_PASSWORD=pass1` ，点击  **Create** 按钮。然后我们会立刻进入堆栈页面，这里包含了所有服务。
 
-Next, click on  **Add Service** again to add another service. We'll add a WordPress service and link to the mysql service. Let's use the name, _mywordpress_, and use the wordpress image. We'll move the slider to have the scale of the service be 2 containers. In the **Service Links**, add the _database_ service and provide the name _mysql_. Just like in Docker, Rancher will link the necessary environment variables in the WordPress image from the linked database when you select the name as _mysql_. Click **Create**.
+然后，再次点击 **Add Service** 按钮来添加另外一个服务。我们将添加一个 WordPress 服务并连接到 mysql 服务。让我们使用 _mywordpress_ 做名称，使用 wordpress 镜像。我们将拉动滚动条增加此服务的容器数量到2。在 **Service Links** 标签中，添加 _database_  服务，并提供 _mysql_ 名称。就想在 Docker 中一样，当你选择了 _mysql_ 后，Rancher 将从所连接的数据库服务中连接必要的环境变量到 WordPress 镜像中。然后点击**Create**。
 
-Finally, we'll create our load balancer. Click on the dropdown menu icon next to the **Add Service** button. Select **Add Load Balancer**. Provide a name like _wordpresslb_ and select a source port and target port on the host that you'll use to access the wordpress application. In this case, we'll use `80` for both ports.  The target service will be _mywordpress_ service. Click **Save**. 
+最后，我们来创建负载均衡器。点击 **Add Service**按钮傍边的下拉菜单。选择 **Add Load Balancer**。提供像  _wordpresslb_  这样的名称，并选择一个源端口和你将用来访问 wordpress 应用的主机上的目标端口。在这个例子中，我们把这两个端口都使用 `80` 。目标服务将是  _mywordpress_ 。点击 **Save**。 
 
-Our multi-service application is now complete! On the **Applications** -> **Stack** page, you'll be able to find the exposed port of the load balancer as a link. Click on that link and a new browser will open, which will display the wordpress application.
+至此我们的多服务应用堆栈创建完毕！在 **Applications** -> **Stack**页面，我们将能够在负载均衡器的开放端口处找到一个连接。点击这个连接，浏览器将新打开一个窗口，它将显示 wordpress 应用。
 
-### Create a Multi-Container Application using Rancher Compose
+### 使用 Rancher Compose 创建一个多容器应用
 
-In this section, we will show you how to create and deploy the same WordPress application we created in the previous section using a command-line tool called `rancher-compose`. 
+在这一个部分，我们将使用名为 `rancher-compose` 的命令行工具来创建上一节里已经创建和部署的相同的 WordPress 应用。
 
-The `rancher-compose` tool works just like the popular `docker-compose` tool. It takes in the same `docker-compose.yml` file and deploys the application on Rancher. You can specify additional attributes in a `rancher-compose.yml` file which extends and overwrites the `docker-compose.yml` file.
+命令行工具 `rancher-compose` 的功能和流行的 `docker-compose`命令行工具类似。它使用相同的`docker-compose.yml`文件来在 Rancher 上部署应用。你能在 `rancher-compose.yml` 文件中制定更多的属性，它会扩展和覆盖 `docker-compose.yml` 文件。
 
-In the previous section, we created a Wordpress application with a load balancer. If you had created it in Rancher, you can download the files directly from our UI by selecting **Export Config** from the stack's dropdown menu. The `docker-compose.yml` and `rancher-compose.yml` files would look like this:
+在上一节里，我们创建了一个具有一个负载均衡器的 WordPress 应用。如果你已经在 Ranher 中创建了它，你能直接在图形界面的堆栈的下拉菜单中选择  **Export Config** 来直接下载文件。`docker-compose.yml` 和 `rancher-compose.yml` 文件内容将与下面实例类似：
 
 **docker-compose.yml**
 
@@ -151,7 +151,7 @@ database:
   scale: 1
 ```
 
-Download the `rancher-compose` binary from the Rancher UI by clicking on `Download CLI`, which is located on the right side of the footer. We provide the ability to download binaries for Windows, Mac, and Linux.
+从 Ranher 图形界面中点击 `Download CLI` 来下载 `rancher-compose` 可执行文件，这个链接位于页面的页脚。我们提供了 Windows，Mac 和 Linux 的不同的版本。
 
 In order for services to be launched in Rancher using `rancher-compose`, you will need to set some variables in `rancher-compose`. You will need to create an [environment API Key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/api-keys/) in the Rancher UI. Click on **API** and click on **Add API Key**. Save the username (access key) and password (secret key). Set up the environment variables needed for rancher-compose: `RANCHER_URL`, `RANCHER_ACCESS_KEY`, and `RANCHER_SECRET_KEY`.
 
