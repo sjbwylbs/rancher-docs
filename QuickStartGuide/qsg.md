@@ -52,7 +52,7 @@ $ sudo docker run -e CATTLE_AGENT_IP=172.17.0.3 -d --privileged -v /var/run/dock
 
 不管你的主机是什么 IP 地址，**_first_container_** 和 **_Network Agent_** 将会的到 `10.42.*.*` 网段的 IP 地址。Rancher 已经创建了能在不同主机之上的让所有容器可以相互通信的覆盖网络。
 
-如果你点击 **_first_container_**的下拉菜单，你可以执行各种动作，例如：停止容器，查看日志，或者进入容器的 CLI 控制台。
+如果你点击 **_first_container_**的下拉菜单，你可以执行各种动作，例如：停止容器，查看日志，或者进入容器的 控制台。
 
 ### Create a Container through Native Docker CLI
 
