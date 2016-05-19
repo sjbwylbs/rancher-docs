@@ -1,6 +1,6 @@
 # 单节点服务器安装
 
-Rancher 使用基于 Docker 容器的部署方式。仅需简单的启动两个容器即可运行。一个容器用于管理 Rancher 服务，其他容器使用代理的方式管理主机或节点。
+Rancher 使用基于 Docker 容器的部署方式。仅需简单地启动两个容器即可运行。一个容器用于管理 Rancher 服务，其他容器使用代理的方式管理主机或节点。
 
 ## 需求
 - 任何支持 Docker 1.10.3 的 Linux 发行版。其中 [RancherOS](http://docs.rancher.com/os/)，Ubuntu，RHEL/CentOS 7 经过了更多的测试
