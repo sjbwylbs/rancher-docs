@@ -54,15 +54,15 @@
 	```
 
 #### 生成配置脚本
-1. 访问 Rancher Server 地址 `http://<server_IP>:8080` 生成脚本。在 **Admin** -> **HA** 确认 Rancher Server 已经成功连接到外部数据库。如果没有正确配置，请重复上一节中的步骤 1 和 4 。
-2. 选择集群大小，应该为您的 Rancher Server 节点数量，参照上一节中步骤 3 。
+1. 访问 Rancher 服务器地址 `http://<server_IP>:8080` 生成脚本。在 **Admin** -> **HA** 确认 Rancher 服务器已经成功连接到外部数据库。如果没有正确配置，请重复上一节中的步骤 1 和 4 。
+2. 选择集群大小，应该为您的 Rancher 服务器节点数量，参照上一节中步骤 3 。
 3. 在 **Host Registration URL** 中填写外部负载均衡器的 IPv4 地址或主机名。
-4. 选择您想使用的证书类型。Rancher Server 可以为您生成一个自签名证书或者使用自己的有效证书。
+4. 选择您想使用的证书类型。Rancher 服务器可以为您生成一个自签名证书或者使用自己的有效证书。
 5. 点击 **Generate Config Script** 。
 6. 下载脚本并保存到本地。
-7. 保存脚本后，停止用于生成脚本的 Rancher Server 容器。
+7. 保存脚本后，停止用于生成脚本的 Rancher 服务器容器。
 
-#### 启动高可用的 Rancher
+#### 启动Rancher高可用
 1. 为了使所有节点支持高可用，你需要在所有节点上使用配置脚本启动 Rancher Server 。脚本将启动一个 Rancher Server 容器并连接到之前创建的外部数据库。
 
 	> **注意：**
