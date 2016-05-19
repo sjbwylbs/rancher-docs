@@ -8,7 +8,7 @@
    * [多节点高可用](Installing-Rancher/multi-nodes.md)
    * [基本 SSL 配置](Installing-Rancher/basic-ssl-config.md)
    * [无互联网访问](Installing-Rancher/no-internet-access.md)
-   * 添加主机
+   * [添加主机](Installing-Rancher/adding-hosts.md)
 * [基本概念](concepts/index.md)
 * [Rancher 基础服务](rancher-services/index.md)
    * [健康检查](rancher-services/health-checks.md)
