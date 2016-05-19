@@ -156,11 +156,11 @@ database:
 为了使用`rancher-compose`在 Rancher 中启动服务，你需要设置一些必须的变量。你需要在 Rancher 图形界面中创建一个 [environment API Key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/api-keys/) 。点击  **API** ，在点击  **Add API Key**。保存用户名(access key)和密码(secret key)。设置 rancher-compose 所需要的环境变量：`RANCHER_URL`, `RANCHER_ACCESS_KEY`, 和 `RANCHER_SECRET_KEY`。 
 
 ```bash
-# Set the url that Rancher is on
+# 设置 Rancher 的环境变量
 $ export RANCHER_URL=http://server_ip:8080/
-# Set the access key, i.e. username
+# 设置访问密钥，类似：username
 $ export RANCHER_ACCESS_KEY=<username_of_key>
-# Set the secret key, i.e. password
+# 设置安全密钥，类似： password
 $ export RANCHER_SECRET_KEY=<password_of_key>
 ```
 
