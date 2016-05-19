@@ -9,6 +9,7 @@
    * [基本 SSL 配置](Installing-Rancher/basic-ssl-config.md)
    * [无互联网访问](Installing-Rancher/no-internet-access.md)
    * [添加主机](Installing-Rancher/add-host.md)
+   * 添加主机
 * [基本概念](concepts/index.md)
 * [Rancher 基础服务](rancher-services/index.md)
    * [健康检查](rancher-services/health-checks.md)
@@ -16,7 +17,7 @@
    * [使用 Route 53 做外部 DNS](rancher-services/Route53-DNS-Service.md)
    * [元数据服务](rancher-services/metadata-service.md)
    * [存储服务](rancher-services/storage-service.md)
-   * [审计日志](/rancher-services/audit-log.md)
+   * [审计日志](rancher-services/audit-log.md)
 * [系统配置](configuration/index.md)
    * [访问控制](configuration/access-control.md)
    * [设置](configuration/settings.md)
