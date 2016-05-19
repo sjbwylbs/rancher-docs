@@ -153,7 +153,7 @@ database:
 
 从 Ranher 图形界面中点击 `Download CLI` 来下载 `rancher-compose` 可执行文件，这个链接位于页面的页脚。我们提供了 Windows，Mac 和 Linux 的不同的版本。
 
-In order for services to be launched in Rancher using `rancher-compose`, you will need to set some variables in `rancher-compose`. You will need to create an [environment API Key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/api-keys/) in the Rancher UI. Click on **API** and click on **Add API Key**. Save the username (access key) and password (secret key). Set up the environment variables needed for rancher-compose: `RANCHER_URL`, `RANCHER_ACCESS_KEY`, and `RANCHER_SECRET_KEY`.
+为了使用`rancher-compose`在 Rancher 中启动服务，你需要设置一些必须的变量。你需要在 Rancher 图形界面中创建一个 [environment API Key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/api-keys/) 。点击  **API** ，在点击  **Add API Key**。保存用户名(access key)和密码(secret key)。设置 rancher-compose 所需要的环境变量：`RANCHER_URL`, `RANCHER_ACCESS_KEY`, 和 `RANCHER_SECRET_KEY`。 
 
 ```bash
 # Set the url that Rancher is on
@@ -164,11 +164,11 @@ $ export RANCHER_ACCESS_KEY=<username_of_key>
 $ export RANCHER_SECRET_KEY=<password_of_key>
 ```
 
-Now, navigate to the directory where you saved `docker-compose.yml` and `rancher-compose.yml` and run the command.
+现在进入保存 `docker-compose.yml` 和 `rancher-compose.yml`  文件的目录中，并运行下面的命令。
 
 ```bash
 $ rancher-compose -p NewWordpress up
 ```
 
-In Rancher, a new stack will be created called **NewWordPress** with all of the services launched.
+在 Rancher 中，一个名为 **NewWordPress** 的新堆栈将被创建，并且具有了所以的服务。
 
