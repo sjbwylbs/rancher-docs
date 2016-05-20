@@ -1,31 +1,31 @@
 ## 添加主机
 ---
-Within Rancher, we provide easy instructions to add your host from the Cloud providers that are supported directly from our UI as well as instructions to add your own host if your Cloud provider is not supported yet. From the **Hosts** tab within the **Infrastructure** tab, click on **Add Host**.
+在 Rancher 中，我们在网页上提供了关于如何添加公有云主机的简洁的说明，还包括了对于不支持的公有云如何做的说明。在 **Infrastructure** 页面点击  **Hosts** 菜单，在点击 **Add Host** 按钮。
 
-### Hosts Requirements
+### 主机最小化需求
 
-* Any modern Linux distribution that supports Docker 1.10.3. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
-* 1GB RAM 
-* Recommended CPU w/ AES-NI
+* 任何能支持 Docker 1.10.3 的 Linux 发行版。其中 [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 是经过了大量测试的。
+* 1GB 内存
+* 建议 CPU 具备 AES-NI 特性
 
-### How do Hosts work?
+### 工作机制?
 
-A host gets connected to Rancher server when the rancher agent container is started on the host. The registration token, which is the long URL in  the **Add Host** -> **Custom** screen, is used by the rancher agent to connect to the server for the first time. Upon connection, it generates an agent account and API key pair in Rancher server. The key pair is then used for all subsequent communication using the same authentication and authorization logic as there is for other kinds of accounts, like environment API keys.
+当 Rancher Agent 容器在主机上被启动了之后，主机开始去连接 Rancher 服务器。在**Add Host** -> **Custom** 页面上显示的很长的添加主机命令中的注册秘钥被 Rancher Agent 用来做对服务器端的首次连接。基于这个连接，它在 Rancher 服务器中生成了一个 Agent 账户和 API 密钥对。这个秘钥对将被用于后续所有与服务器端的通讯中，这种认证方式和环境 API 秘钥的认证鉴权逻辑是完全一致的。
 
-The design is that the agent is untrusted because it is running on the outside and potentially hostile (to the server) hardware. The agent accounts have access to only the resources they need in the API, replies to events are checked that the event was actually sent to that agent, etc. There is not as much in the opposite direction for the agent to verify the host, so you can also set up TLS and the certificate will be verified. 
+这种设计是假设运行在外部的主机和硬件是不可信的，由于这些资源具有潜在的风险。Agent 的账号仅仅具有它所需要访问的资源的权限，由 Agent 端发送来的事件实际上是被检查的。而反方向并没有Agent 去校验主机的机制，因此您还可以配置用于 Agent 和 Rancher 服务器通讯的 TLS 证书校验。 
 
-The IPSec key is per [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/). It is generated on the server, stored in the database, and sent to the host as part of the agent registration with the API key pair. The connections are point to point between hosts and AES encrypted, which is accelerated by most modern CPUs.
+不同环境的 IPSec 密钥是不同的，它被保存在数据库里，它在 Agent 用 API 密钥对注册的时候被发送给主机。主机直接的连接是点对点的，是 AES 加密的，这种加密是可以被大多数型号的 CPU 做加速的。
 
 <a id="addhost"></a>
 
-## Adding a Host
+## 添加主机
 ---
 
-The first time that you add a host, you may be required to set up the [Host Registration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration/). This setup determines what DNS name or IP address, and port that your hosts will be connected to the Rancher API. By default, we have selected the management server IP and port `8080`.  If you choose to change the address, please make sure to specify the port that should be used to connect to the Rancher API. At any time, you can update the [Host Registration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration/). After setting up your host registration, click on **Save**.
+在第一次做主机添加的时候，你需要配置一次  [Host Registration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration/)。这个配置决定了主机用什么 DNS 名称或者 IP 地址和端口来连接 Rancher API。默认，我们已经选择了管理 IP 和端口`8080`。如果您确定需要改变 IP 地址，请确认这个地址和端口是被用来连接 RAncher API 的。在任何时候，您能更新[Host Registration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration/)。在完成主机注册的配置后，点击 **Save** 按钮。
 
-We support adding hosts directly from cloud providers or adding a host that's already been provisioned. For cloud providers, we provision using `docker-machine` and support any images that `docker-machine` supports. 
+我们支持直接添加公有云主机或者云里已经创建好的主机。对于公有云，我们通过 `docker-machine`创建主机，并支持任何支持 `docker-machine` 的云主机镜像。
 
-Select which host type you want to add:
+选择你想添加的公有云主机：
 
 * [Adding Custom Hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/custom/)
 * [Adding Amazon EC2 Hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/amazon/)
@@ -36,31 +36,31 @@ Select which host type you want to add:
 * [Adding Rackspace Hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/rackspace/)
 * [Adding Hosts from Other Drivers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/other/)
 
-When a host is added to Rancher, a rancher agent container is launched on the host. Rancher will automatically pull the correct image version tag for the `rancher/agent` and run the required version. The agent version is tagged specifically to each Rancher server version.
+当一个主机被添加到 Rancher 中，一个 Rancher agent 容器在该主机上被启动。Ranher 将自动地下拉正确版本号的 `rancher/agent` 镜像，来运行所需版本的 Agent。Agent 版本的标签必须对应用相应的 Rancher 服务器版本。
 
 <a id="labels"></a>
 
-### Host Labels
+### 主机标签
 
-With each host, you have the ability to add labels to help you organize your hosts. The labels are added as an environment variable when launching the rancher/agent container. The host label in the UI will be a key/value pair and the keys must be unique identifiers. If you added two keys with different values, we'll take the last inputted value to use as the key/value pair.
+对于每一个主机，你可以通过打标签的方式来组织它们。当启动 rancher/agent 容器的时候，标签被当做环境变量来添加了。在图形界面中添加主机标签是用键/值对格式的，其中见必须是唯一标识符。如果你添加了两个相同的键，并使用不了不同的值，我们将只使用后一个输入的键/值对。
 
-By adding labels to hosts, you can use these labels when [schedule services/load balancers/services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/scheduling/) and create a whitelist or blacklist of hosts for your [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/) to run on. 
+通过给主机打标签，你可以在之后的服务调度/负载均衡/服务定义 ( [schedule services/load balancers/services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/scheduling/))中用到，如给某个服务  [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/) 建立一个它运行主机的白名单或者黑名单。  
 
-If you are planning to use an [external DNS service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/dns-service/) and will require [to program the DNS records using an IP other than the host IP]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/dns-service/#using-a-specific-ip-for-external-dns), then you will need to include the label `io.rancher.host.external_dns_ip=<IP_TO_BE_USED_FOR_EXTERNAL_DNS>` on the host. The host label can be added when registering the host or after the host has been added to Rancher, but it should be added to the host before the external DNS service starts. The value of this label will be used when programming rules for external DNS services. 
+如果您打算使用一个外部的 DNS 服务  [external DNS service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/dns-service/) 那么您需要让 DNS 记录使用一个 IP 而不是主机 IP  [to program the DNS records using an IP other than the host IP]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/dns-service/#using-a-specific-ip-for-external-dns)，接着您需要在主机上使用这个标签  `io.rancher.host.external_dns_ip=<IP_TO_BE_USED_FOR_EXTERNAL_DNS>` 。打此主机标签可以在注册这个主机的时候或者主机已经被添加到 Ranher 中以后，它应该在外部 DNS 服务开始使用到之前做。这个标签的值对于外部的 DNS 服务需要是符合某种可编程的逻辑。
 
-When using the UI to add hosts with the different cloud providers, the rancher/agent command is automatically launched for you with the host labels that are added in the UI. 
+当使用图形界面添加不同类型的云主机的时候，rancher/agent 命令会被自动地启动，并会使用网页图形界面中您所制定的标签。 
 
-When adding a custom host, you can add the labels using the UI and it will automatically add the environment variable (`CATTLE_HOST_LABELS`) with the key/value pair into the command on the UI screen.
+当您添加自动定义主机是，您可以在图形界面中添加标签，并且它会自动地添加环境变量 (`CATTLE_HOST_LABELS`) 标签对到命令中。
 
-_Example_
+_示例_
 
 ```bash
-# Adding one host label to the rancher/agent command
+# 在 rancher/agent 命令中添加一个主机标签
 $  sudo docker run -e CATTLE_HOST_LABELS='foo=bar' -d --privileged \
     -v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.8.2 \
     http://<rancher-server-ip>:8080/v1/projects/1a5/scripts/<registrationToken>
 
-# Adding more than one host label requires joining the additional host labels with an `&`
+# 添加多个主机标签需要使用`&`来连接在一起
 $  sudo docker run -e CATTLE_HOST_LABELS='foo=bar&hello=world' -d --privileged \
     -v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.8.2 \
     http://<rancher-server-ip>:8080/v1/projects/1a5/scripts/<registrationToken>
@@ -68,65 +68,65 @@ $  sudo docker run -e CATTLE_HOST_LABELS='foo=bar&hello=world' -d --privileged \
 
 <br>
 
-> **Note:** The `rancher/agent` version is correlated to the Rancher server version. You will need to check the custom command to get the appropriate tag for the version to use. 
+> **注意:** `rancher/agent` 的版本是必须和 Rancher 服务器版本保持对应的。你需要在这里检查自定义命令中所使用的版本号标签是正确的。
 
-#### Automatically Applied Host Labels
+#### 自动化添加的主机标签
 
-Rancher automatically creates host labels related to linux kernel version and Docker Engine version of the host. 
+Rancher 自动化生成的主机标签是关于主机的 Linux 内核版本和 Docker 引擎版本的。 
 
-Key | Value | Description
+键 | 值 | 描述
 ----|----|----
-`io.rancher.host.linux_kernel_version` | Linux Kernel Version on Host (e.g, `3.19`) |  Version of the Linux kernel running on the host
-`io.rancher.host.docker_version` | Docker Version on the host (e.g. `1.10.3`) | Docker Engine Version on the host
+`io.rancher.host.linux_kernel_version` | 主机的 Linux 内核版本 (例如： `3.19`) |  主机所运行的 Linux 内核版本号。
+`io.rancher.host.docker_version` | 主机的 Docker 版本 (例如： `1.10.3`) | 主机所安装的 Docker 引擎版本。
 
 
-### Hosts behind a Proxy
-To support hosts behind a proxy, you'll need to edit the Docker daemon to point to the proxy. The detailed instructions are listed within our [adding custom host page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/custom/#hosts-behind-a-proxy).
+### 主机在代理服务器后面
+为了支持主机位于代理服务器之后，您将修改 Docker 引擎的配置来指向一个代理服务器。对此的描述请见  [adding custom host page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/custom/#hosts-behind-a-proxy)页面。
 
 <a id="machine-config"></a>
 
-### Accessing hosts from the Cloud Providers 
-After Rancher launches the host, you may want to be able to access the host. We provide all the certificates generated when launching the machine in an easy to download file. Click on **Machine Config** in the host's dropdown menu. It will download a tar.gz file that has all the certificates.
+### 登录云主机 
+在 Rancher 启动主机之后，您可以登录这些主机。我们提供在创建主机过程中生成的证书，并提供下载。点击主机上的**Machine Config** 下拉菜单。这将下载一个包含所有证书的 tar.gz 文件。
 
-To SSH into your host, go to your terminal/command prompt. Navigate to the folder of all the certificates and ssh in using the `id_rsa` certificate.
+SSH 登录到您的主机，打开命令行工具，进入包含所有证书文件的目录，使用 `id_rsa` 证书，用如下命令连接。
 
 ```bash
 $ ssh -i id_rsa root@<IP_OF_HOST>
 ```
 
-## Cloning a Host
+## 克隆主机
 ---
 
-Since launching hosts on cloud providers requires using an access key, you might want to easily create another host without needing to input all the credentials again. Rancher provides the ability to clone these credentials to spin up a new host. Select **Clone** from the host's drop down menu. It will bring up an **Add Host** page with the credentials of the cloned host populated.
+由于需要使用一个访问密钥来启动云主机，您可能想通过不用每次都输入密钥的方式来更简单地创建另外其他的云主机。Rancher 提供了克隆的功能来创建新相似的云主机。从主机的下拉菜单中选择 **Clone** 。它会带您进入**Add Host**页面，这个页面上的密码部分已经为您填写好了。
 
-## Editing Hosts
+## 编辑主机
 ---
 
-The options for what can be done to a host are located in the host's dropdown. From the **Infrastructure** -> **Hosts** page, the dropdown icon will appear when you hover over the host. If you click on the host name to view more details of a host, the dropdown icon is located in the upper right corner of the page. It's located next to the State of the host.
+这个菜单位于一个已经添加成功的主机的下拉菜单中。在  **Infrastructure** -> **Hosts**页面，该菜单当您的鼠标滑过主机的下拉菜单按钮的时候出现。如果您点击主机名来查看主机详情，此菜单在页面的右上角的下拉菜单图标中。它就位于主机状旁。
 
-If you select **Edit**, you can update the name, description or labels on the host. 
+如果您点击 **Edit** 菜单，您可以更新名称，描述或者主机的标签。 
 
-### Deactivating/Activating Hosts
+### 停用/激活主机
 
-Deactivating the host will put the host into an _Inactive_ state. In this state, no new containers can be deployed. Any active containers on the host will continue to be active and you will still have the ability to perform actions on these containers (start/stop/restart). The host will still be connected to the Rancher server. Select **Deactivate** from the host's dropdown menu.
+停用主机将把主机置于 _Inactive_ 状态。在这个状态里，不会有新容器被部署。该主机上任何已经存在的活动的容器请依然照旧运行，对容器还是可以执行动作（启动/停止/重启）。这个主机将会继续保持和Rancher 服务器的连接。
 
-When a host is in the _Inactive_ state, you can bring the host back into an _Active_ state by clicking on **Activate** from the host's dropdown menu.
+当一个主机处于_Inactive_ 状态，您还可以通过点击主机的下拉菜单中的 **Activate** 使其返回到 _Active_ 状态。
 
-> **Note:** If a host is down in Rancher (i.e. in `reconnecting` or `inactive` state), you will need to implement a [health check]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/health-checks/) in order for Rancher to launch the containers on your service on to a different host.
+> **注意:** 如果一个主机在 Rancher 中已经宕机（例如：处于`reconnecting` 或 `inactive` 状态 ），您将需要执行一次健康检查来让您的服务所使用的容器在另外的主机上启动起来。
 
-## Removing Hosts
+## 删除主机
 ---
 
-In order to remove a host from the server, you will need to do a couple of steps from the dropdown menu.
+为了从服务器上删除一个主机，您将需要在主机的下拉菜单中做这些操作。
 
-Select **Deactivate**. When the host has completed the deactivation, the host will display an _Inactive_ state. Select **Delete**. The server will start the removal process of the host from the Rancher server instance. The first state that it will display after it’s finished deleting it will be _Removed_. It will continue to finalize the removal process and move to a _Purged_ state before immediately disappearing from the UI. 
+选择 **Deactivate** 。当主机已经完全处于停用状态了，主机将进入 _Inactive_ 状态。选择 **Delete**。服务器将开始执行主机删除的操作。在完成了删除动作之后状态先会变为_Removed_。在彻底重图形界面上消失之前它还会进入  _Purged_ 状态。
 
-If the host was created on a cloud provider using Rancher, the host will be deleted from the cloud provider. If the host was added by using the [custom command]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/custom/), the host will remain on the cloud provider.
-                                                                                                                                                                                                                                                                                                                                                        
-> **Notes:** For custom hosts, all containers including the Rancher agent will continue to remain on the host.  
+如果主机是在 Ranher 中创建的云主机，主机会将被从云端删除。如果云主机是通过使用自定义命令添加的，主机将依然保留在云端。
 
-## Deleting Hosts outside of Rancher
+> **注意:** 对于自定义主机，所有容器包括 Rancher agent 容器都还会保留在主机上。
+
+## 在 Rancher 之外删除主机
 ---
 
-If your host is deleted outside of Rancher, then Rancher server will continue to show the host until it’s removed. Eventually, these hosts will show up in a _Reconnecting_ state and never be able to reconnect. You will be able to **Delete** these hosts to remove them from the UI. 
+如果主机不是在 Rancher 中删除的，Rancher 服务器还会持续连接它。最终，这个主机的状态会持续为 _Reconnecting_ 状态，即使它没有被重连成功。因此您需要在图形界面中通过  **Delete** 删除这些主机，并它们清除掉。
 
