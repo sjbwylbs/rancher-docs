@@ -1,9 +1,9 @@
+## 审计日志
 
-# 审计日志
+只有管理者才能存取审计日志。 你可以在 Admin -> Audit Log 找到审计日志。
 
-Only admins will have access to the audit logs. The audit log can be found under Admin -> Audit Log.
+Rancher 的审计日志是集合了不同类型的事件。
 
-Rancher’s audit logs are a compilation of different event types.
+- 任何前錣是 api 调用我们的 API 时。 这个事件将会记录谁执行这个动作和怎么詷用这个 API (例如：透过用户界面、透过 API key)
 
-- Anything prefixed with api is a call to our API. The event type will log the API action, who performed the action and how the API was called (i.e. through the UI, through an API key).
-- Any other events that are not prefixed with api are events that Rancher server is doing. For example, during reconciling of containers of a service, an instance may be created which would log an instance.create event.
+- 其他的有让 Rancher 服务端动作而没有前錣的 api 事件。例如实例在一个服务的容器在处理过程，会记录在 `instance.create` 事件中。
