@@ -1,48 +1,29 @@
-## Contributing to Rancher
----
-
-### Developing
-
- GitHub [repository](https://github.com/rancher/rancher), our wiki contains all the steps to get started with developing Rancher.
-
-Start with our first [cowpoke](https://github.com/rancher/rancher/wiki/Cowpoke-1:-Getting-Started-with-Rancher) to get started!
-
-### Repositories
-
-All of repositories are located within our main GitHub [page](https://github.com/rancher). There are many repositories used for Rancher, but we'll provide descriptions of some of the main ones used in Rancher.
-
-[Rancher Repo](https://github.com/rancher/rancher): This repo is the main repo that integrates all the other repos together. 
-
-[Cattle Repo](https://github.com/rancher/cattle): This repo is where the functionality of Rancher is developed. 
-
-[UI Repo](https://github.com/rancher/ui): This repo is where all the UI for Rancher is developed. 
-
-[Community Catalog Repo](https://github.com/rancher/community-catalog): This repo has all community contributed templates for the [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog). We welcome community contributions to the Rancher templates. 
-
-[Rancher-Compose Repo](https://github.com/rancher/rancher-compose): This repo is what the [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/) CLI is based on. It's synced with docker/libcompose. 
-
-### Bugs
-
-If you find any bugs or are having any trouble, please contact us by filing an [issue](https://github.com/rancher/rancher/issues/new). Though we have many repositories related to Rancher, we want the majority of the bugs in the [Rancher repo](https://github.com/rancher/rancher) so we won't miss them!
-
-If you have any updates to our documentation, please make any PRs to our [docs repo](https://github.com/rancher/rancher.github.io) or click on the **Edit this page** to be taken directly to the page. 
-
 ## 为 Rancher 做贡献
 ---
 
-###共同开发
-在我们GitHub repository源码存放区上，我们的维基文档里有一步一步指导你如何在Rancher上做开发的文档。
-好的，点这里cowpoke开始你的第一次Rancher开发吧。
+### 参与开发
 
-###其他资源
-这些资源都已经放到了我们在GitHub的主页上page。这里有很多对Rancher很有用的资源，在这里我们介绍其中比较重要的几个资源站点。
-Rancher Repo:这个repo脚本是其他所有repo脚本的主脚本。
-Cattle Repo:这个repo脚本描述了Rancher已经开发的功能。
-UI Repo:这个repo脚本描述了Rancher所有已经开发的交互界面。
-Community Catalog Repo:社区Catalog Repo脚本里记录所有为Rancher Catalog提供了社区贡献的templates，我们欢迎社区为Rancher templates多做贡献。
-Rancher-Compose Repo:这个repo脚本与docker/libcompose保持同步，它介绍了 rancher-compose命令行的情况。
+查看GitHub [代码库](https://github.com/rancher/rancher), 在我们的 wiki 文档里有给 Rancher 开发人员写的如何上手开发工作的文档。
 
-###关于BUG
-如果你发现了任何BUG或者任何问题，请通过问题反馈的方式填写 issue告知我们。
-虽然我们已经为Rancher添加了诸多功能，但是我们还是希望在Rancher repo中尽量减少BUG。
-有任何意见或建议，你可以上传到docs repo或者直接在本页面（http://docs.rancher.com/rancher/latest/en/contributing/）上编辑修改。
+先从 [cowpoke](https://github.com/rancher/rancher/wiki/Cowpoke-1:-Getting-Started-with-Rancher) 来开始您的代码协作开发之旅吧！
+
+### 代码库
+
+在我们的 GitHub [首页](https://github.com/rancher) 您能看到 Rancher 所有的相关代码库，但是下面我们会简要介绍Rancher 所使用的几个核心的代码库。
+
+[Rancher Repo](https://github.com/rancher/rancher): 这个代码库的功能是把所有其它相关代码库集成在一起。
+
+[Cattle Repo](https://github.com/rancher/cattle): 这是用来开发 Rancher 核心功能的代码库。 
+
+[UI Repo](https://github.com/rancher/ui): 这是用来开发 Rancher 图形用户界面部分的代码库。
+
+[Community Catalog Repo](https://github.com/rancher/community-catalog): 这里是 [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog) 所使用的所有社区贡献的模板。我们欢迎您在这里贡献模板。
+
+[Rancher-Compose Repo](https://github.com/rancher/rancher-compose):  这是 [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/) CLI 功能的代码库。它总是会与 docker/libcompose 保持同步。
+
+### 关于 Bug
+
+如果您发下了任何 Bug 或者有任何使用问题，请通过填写 Issue 的方式联系我们。尽管我们的 Rancher 中有很多代码库，我们还是想让大多数的 bug 都能被记录在 [Rancher repo](https://github.com/rancher/rancher) ，这样就不会被错过！
+
+如果您想帮助优化我们的文档，请提交 PR 到我们文档的代码库 [docs repo](https://github.com/rancher/rancher.github.io) ，或者点击文档页面上的 **Edit this page** 按钮，它会直接带您进入页面修订功能。
+
