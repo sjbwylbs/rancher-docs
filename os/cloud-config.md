@@ -83,9 +83,10 @@ You can add SSH keys to the default `rancher` user.
 ssh_authorized_keys:
   - ssh-rsa AAA... darren@rancher
 ```
-
+### 把文件写入磁盘　
 ### Write Files to Disk
 
+您可以使用`write_files`指令来把文件写入磁盘
 You can write files to the disk using the `write_files` directive.
 
 ```yaml
@@ -99,8 +100,10 @@ write_files:
       echo "I'm doing things on start"
 ```
 
+#### 把日志写到DockerHub或者私有库 
 #### Logging into DockerHub or Private Repositories
 
+使用`write_files`指令,您可以添加登录授权，这样RancherOS登录之后，您就会自动登录。
 By using the `write_files` directive, you can add your login credentials so that when RancherOS boots, you will already by logged in.
 
 ```
@@ -122,6 +125,8 @@ write_files:
 
 > **Note:** Currently, you will not be able to log into a repository and launch the service in the same cloud-config file, which means you will not be able to launch a container using cloud-config from a private repository.
 
+
+### 设置主机名
 ### Set Hostname
 
 You can set the hostname of the host using cloud-config. The example below shows how to configure it.
@@ -130,6 +135,8 @@ You can set the hostname of the host using cloud-config. The example below shows
 hostname: myhost
 ```
 
+
+### 在RancherOS中启动容器
 ### Launching Containers in RancherOS
 
 To start containers in RancherOS when booting it up, you can just add the services to the cloud-config file.
@@ -143,8 +150,10 @@ rancher:
       restart: always
 ```  
 
+#### 系统Docker命令 与用户Docker的关系
 #### System-Docker vs. User Docker
 
+RancherOS 使用标签来判断容器是否应该被部署在 system-docker. 默认容器会被发布到用户Docker
 RancherOS uses labels to determine if the container should be deployed in system-docker. By default without the label, the container will be deployed in user docker.
 
 ```yaml
@@ -152,9 +161,19 @@ labels:
 - io.rancher.os.scope=system
 ```
 
+#### 标签
 #### Labels
 
+我们使用标签来决定如何处理容器服务
 We use labels to determine how to handle the service containers.
+
+键 | 值 |描述
+----|-----|---
+`io.rancher.os.detach` | 默认: `true` | 等效于执行`docker run -d`.假如设置为`false`,等效于`docker run --detach=false`
+`io.rancher.os.scope` | `system` | 使用此标签让容器发布到系统Docker
+`io.rancher.os.before`/`io.rancher.os.after` | Service Names (Comma separated list is accepted) | Used to determine order of when containers should be started
+`io.rancher.os.createonly` | Default: `false` | When set to `true`, only a `docker create` will be performed and not a `docker start`.
+`io.rancher.os.reloadconfig` | Default: `false`| When set to `true`, it reloads the configuration.
 
 Key | Value |Description
 ----|-----|---
